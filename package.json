@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "rm -rf ./build && tsc --project ./",
+    "build": "rm -rf ./dist && tsc --project ./",
     "compile": "tsc",
-    "start": "node build/src/index.js"
+    "start": "node dist/src/index.js"
   },
   "keywords": [],
   "author": "",

@@ -11,7 +11,7 @@ import AstralObjectFactory from '../../../service/astralobject';
  */
 class CrossMintMegaverse extends Megaverse {
 
-  // LocalMegaverse is a Singleton
+  // CrossMintMegaverse is a Singleton
   protected static instance: CrossMintMegaverse;
 
   // Private properties
@@ -26,7 +26,15 @@ class CrossMintMegaverse extends Megaverse {
       baseURL: config.crossMintApiUrl,
     });
     // We will use axios-retry to retry requests in case of failure
-    axiosRetry(this.axiosInstance, { retries: CrossMintMegaverse.MAX_RETRIES, retryDelay: () => CrossMintMegaverse.RETRY_DELAY_MS })
+    axiosRetry(this.axiosInstance, {
+      retries: CrossMintMegaverse.MAX_RETRIES, retryDelay: (retryCount) => {
+        let interval = CrossMintMegaverse.RETRY_DELAY_MS * retryCount;
+        console.log(`Crossmint API request failed. Attempt #${retryCount} will occur after ${interval}ms`);
+        return interval;
+      }, retryCondition: (error) => {
+        return error.response?.status === 429;
+      }
+    })
     this.candidateId = config.candidateId;
   }
 

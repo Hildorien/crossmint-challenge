@@ -43,6 +43,22 @@ class LocalMegaverse extends Megaverse {
         return this.instance;
     }
 
+    public resetMegaverse(maxRow: number, maxColumns: number): void {
+        this.maxColumns = maxColumns;
+        this.maxRow = maxRow;
+        this.goalMap = {
+            goal:
+                Array.from({ length: maxRow }, (_, row) =>
+                    Array.from({ length: maxColumns }, (_, column) => new Space({ x: row, y: column }).toString())
+                )
+        }
+    }
+
+    // Helper function
+    public setGoalMap(goalMap: MegaverseSpace): void {
+        this.goalMap = goalMap;
+    }
+
     // Megaverse Interface
 
     async setAstralObject(astralObject: AstralObject): Promise<void> {
@@ -62,7 +78,7 @@ class LocalMegaverse extends Megaverse {
         return new Promise((resolve, reject) => {
             const row = astralObject.getRow();
             const column = astralObject.getColumn();
-            if (row < 0 || row > 10 || column < 0 || column > 10) {
+            if (row < 0 || row > this.maxRow || column < 0 || column > this.maxColumns) {
                 reject(new Error("Invalid row or column"));
             }
 

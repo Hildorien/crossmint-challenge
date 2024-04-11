@@ -1,6 +1,9 @@
+import { is } from "@babel/types";
 import Polyanet from "../../model/astralobjects/polyanet";
+import Space from "../../model/astralobjects/space";
 import Megaverse from "../../model/megaverses/megaverse";
 import { Point } from "../../model/point";
+import AstralObjectFactory from "../astralobject";
 
 class ShapeDrawer {
   private megaverse: Megaverse;
@@ -67,15 +70,39 @@ class ShapeDrawer {
   async drawCrossMintLogo(): Promise<void> {
 
     // For the Phase 2, it's necessary to get the goal map from the Crossmint API and copy it to the Megaverse, since the logo is a complex shape.
-
-
-    const map = await this.megaverse.getGoalMap();
     // We will copy the goal map and draw it in the megaverse
+    const map = (await this.megaverse.getGoalMap()).goal;
 
-    // Loop through each row and column of the goal map and parse the AstralObject.
-    // Depending on the AstralObject, we will call the respective method to draw the shape.
+    // Loop through each row and column of the goal map and parse the string representing the astral object to an actual astral object.
+    // Then, set the astral object in the Megaverse.
+    for (let i = 0; i < map.length; i++) {
+      for (let j = 0; j < map[i].length; j++) {
+        const astralObject = AstralObjectFactory.getInstance().initializeAstralObject(map[i][j], { x: i, y: j });
+        // Skip the Space objects, since they are already set in the Megaverse.
+        if (astralObject instanceof Space) continue;
 
+        await this.megaverse.setAstralObject(astralObject);
+      }
+    }
+  }
 
+  async clearCrossMintLogo(): Promise<void> {
+
+    // For the Phase 2, it's necessary to get the goal map from the Crossmint API and copy it to the Megaverse, since the logo is a complex shape.
+    // We will copy the goal map and draw it in the megaverse
+    const map = (await this.megaverse.getGoalMap()).goal;
+
+    // Loop through each row and column of the goal map and parse the string representing the astral object to an actual astral object.
+    // Then, set the astral object in the Megaverse.
+    for (let i = 0; i < map.length; i++) {
+      for (let j = 0; j < map[i].length; j++) {
+        const astralObject = AstralObjectFactory.getInstance().initializeAstralObject(map[i][j], { x: i, y: j });
+        // Skip the Space objects, since they are already set in the Megaverse.
+        if (astralObject instanceof Space) continue;
+
+        await this.megaverse.deleteAstralObject(astralObject);
+      }
+    }
   }
 
 }

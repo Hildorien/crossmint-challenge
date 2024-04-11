@@ -27,7 +27,8 @@ router.delete('/cross', async (req: Request, res: Response, next: Function) => {
 
 router.post('/logo', async (req: Request, res: Response, next: Function) => {
     try {
-        ShapeDrawer.getInstance();
+
+        await ShapeDrawer.getInstance().drawCrossMintLogo();
 
         return res.json({ message: "Logo drawn" });
     } catch (error) {
@@ -38,7 +39,7 @@ router.post('/logo', async (req: Request, res: Response, next: Function) => {
 
 router.delete('/logo', async (req: Request, res: Response, next: Function) => {
     try {
-        ShapeDrawer.getInstance();
+        await ShapeDrawer.getInstance().clearCrossMintLogo();
 
         return res.json({ message: "Logo cleared" });
     } catch (error) {

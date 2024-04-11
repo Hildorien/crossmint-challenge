@@ -13,7 +13,7 @@ class Polyanet extends AstralObject {
         return this.position.y;
     }
     public getName(): string {
-        return "polyanet";
+        return "polyanets";
     }
     public getProperties(): { [key: string]: any; } {
         return {};

@@ -16,11 +16,11 @@ class Soloon extends AstralObject {
         return this.position.y;
     }
     public getName(): string {
-        return "soloon";
+        return "soloons";
     }
     public getProperties(): { [key: string]: any } {
         return {
-            color: this.color
+            color: this.color.toLowerCase()
         };
     }
     public toString(): string {

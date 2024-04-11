@@ -16,11 +16,11 @@ class Cometh extends AstralObject {
         return this.position.y;
     }
     public getName(): string {
-        return "cometh";
+        return "comeths";
     }
     public getProperties(): { [key: string]: any } {
         return {
-            direction: this.direction
+            direction: this.direction.toLowerCase()
         };
     }
     public toString(): string {
