@@ -2,5 +2,4 @@ build/
 dist/
 node_modules/
 .vscode/
-.env
-.env.local
+# .env will exposed to the public but it's needed to run locally. In production, it will be set in the environment

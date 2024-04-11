@@ -12,6 +12,7 @@ COPY package-lock.json /app/
 COPY tsconfig.json /app/
 COPY src /app/src/
 COPY .env /app/
+COPY config /app/config/
 
 RUN npm ci
 RUN npm run build
