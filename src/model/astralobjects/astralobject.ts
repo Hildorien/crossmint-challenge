@@ -1,8 +1,5 @@
 import { Point } from "../point";
 
-import Space from "./space";
-import Polyanet from "./polyanet";
-
 export enum Direction {
     UP = "UP",
     DOWN = "DOWN",

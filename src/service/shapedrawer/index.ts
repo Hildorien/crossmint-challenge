@@ -1,10 +1,11 @@
-import { is } from "@babel/types";
 import Polyanet from "../../model/astralobjects/polyanet";
 import Space from "../../model/astralobjects/space";
 import Megaverse from "../../model/megaverses/megaverse";
-import { Point } from "../../model/point";
 import AstralObjectFactory from "../astralobject";
 
+/**
+ * This class is responsible for drawing shapes in the Megaverse.
+ */
 class ShapeDrawer {
   private megaverse: Megaverse;
 

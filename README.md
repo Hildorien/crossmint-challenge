@@ -48,3 +48,10 @@ Testing was done using `jest`. There are two tests that represent each Phase of 
 
 1. **Phase 1 Test**: Mocks a cross of Polyanets in the LocalMegaverse to simulate the goal in CrossMintMegaverse. Then attempts to draw it and compares the result.
 2. **Phase 2 Test**: Mocks the Crossmint logo in the LocalMegaverse to simulate the goal in CrossMintMegaverse. Then attempts to draw it and compares the result.
+
+
+## Additional comments
+
+This API is a little over-engineered on purpose to show a well structured API using NodeJS with express. It contains a middleware to handle errors and an interceptor using axiosRetry to handle 429 status responses.
+
+The reason behind the Megaverse abstraction and the LocalMegaverse was for testing the drawing methods first without hitting the CrossMint API to "clear" the map if a mistake was made.

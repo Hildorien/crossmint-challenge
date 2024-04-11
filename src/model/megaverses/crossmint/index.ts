@@ -7,7 +7,7 @@ import AstralObjectFactory from '../../../service/astralobject';
 
 
 /**
- * This class is an implementation of the Megaverse interface that communicates with the Crossmint API.
+ * This class is an implementation of the Megaverse that communicates with the Crossmint API.
  */
 class CrossMintMegaverse extends Megaverse {
 
