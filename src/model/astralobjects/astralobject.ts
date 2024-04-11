@@ -21,8 +21,6 @@ export enum Color {
 abstract class AstralObject {
     public position: Point;
 
-
-
     constructor(position: Point) {
         this.position = position;
 
@@ -32,6 +30,7 @@ abstract class AstralObject {
     public abstract getColumn(): number;
     public abstract getName(): string;
     public abstract getProperties(): { [key: string]: any };
+    public abstract toString(): string;
 
 }
 

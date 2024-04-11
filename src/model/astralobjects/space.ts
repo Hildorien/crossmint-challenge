@@ -18,6 +18,9 @@ class Space extends AstralObject {
     public getProperties(): { [key: string]: any; } {
         return {};
     }
+    public toString(): string {
+        return "SPACE";
+    }
 }
 
 export default Space;

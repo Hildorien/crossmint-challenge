@@ -23,6 +23,9 @@ class Soloon extends AstralObject {
             color: this.color
         };
     }
+    public toString(): string {
+        return `${this.color.toUpperCase()}_SOLOON`;
+    }
 }
 
 export default Soloon;

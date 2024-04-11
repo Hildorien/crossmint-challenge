@@ -1,5 +1,6 @@
 import { Router } from "express";
 import shapeDrawerRouter from "./shapeDrawer/router";
+import mapRouter from "./map/router";
 import { handleError } from "./middleware/error";
 
 export let router = Router();
@@ -12,9 +13,14 @@ router.all('/health', (req, res) => {
 });
 
 /**
+ * Map routes
+ */
+router.use('/map', mapRouter);
+
+/**
  * ShapeDrawer routes
  */
-router.use('/shapedrawer/', shapeDrawerRouter);
+router.use('/shapedrawer', shapeDrawerRouter);
 
 
 // Error handler to all routes above

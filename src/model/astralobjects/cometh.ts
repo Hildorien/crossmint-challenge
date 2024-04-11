@@ -23,6 +23,9 @@ class Cometh extends AstralObject {
             direction: this.direction
         };
     }
+    public toString(): string {
+        return `${this.direction.toUpperCase()}_COMETH`;
+    }
 }
 
 export default Cometh;

@@ -20,7 +20,7 @@ class CrossMintMegaverse extends Megaverse {
   private static RETRY_DELAY_MS = 3000;
   private static MAX_RETRIES = 3;
 
-  public constructor(config: CrossMintAPIConfig) {
+  private constructor(config: CrossMintAPIConfig) {
     super();
     this.axiosInstance = axios.create({
       baseURL: config.crossMintApiUrl,
@@ -47,7 +47,7 @@ class CrossMintMegaverse extends Megaverse {
     const goal = data.goal.map((row: any[], i: number) =>
       row.map((item: string, j: number) => {
         // We will initialize the AstralObject based on the item name and position in the goal map
-        AstralObjectFactory.getInstance().initializeAstralObject(item, { x: i, y: j });
+        return AstralObjectFactory.getInstance().initializeAstralObject(item, { x: i, y: j }).toString();
       })
     );
     return { goal };
@@ -81,42 +81,6 @@ class CrossMintMegaverse extends Megaverse {
         return this.parseMegaverseSpace(response.data);
       });
   }
-
-  // Polyanet methods
-  /*public async setPolyanet(row: number, column: number): Promise<void> {
-    await this.axiosInstance.post('/polyanets', { row, column, candidateId: this.candidateId });
-  }
-
-  public async deletePolyanet(row: number, column: number): Promise<void> {
-    await this.axiosInstance.delete('/polyanets', { params: { row, column, candidateId: this.candidateId } });
-  }
-
-  // Soloon methods
-  public async setSoloon(row: number, column: number, color: 'blue' | 'red' | 'purple' | 'white'): Promise<void> {
-    await this.axiosInstance.post('/soloons', { row, column, color, candidateId: this.candidateId });
-  }
-
-  public async deleteSoloon(row: number, column: number): Promise<void> {
-    await this.axiosInstance.delete('/soloons', { params: { row, column, candidateId: this.candidateId } });
-  }
-
-  // Cometh methods
-  public async setCometh(row: number, column: number, direction: 'up' | 'down' | 'right' | 'left'): Promise<void> {
-    await this.axiosInstance.post('/comeths', { row, column, direction, candidateId: this.candidateId });
-  }
-
-  public async deleteCometh(row: number, column: number): Promise<void> {
-    await this.axiosInstance.delete('/comeths', { params: { row, column, candidateId: this.candidateId } });
-  }
-
-  // Goal methods
-  public async getGoalMap(): Promise<MegaverseSpace> {
-    return await this.axiosInstance.get(`/map/${this.candidateId}/goal`)
-      .then((response) => {
-        return this.parseMegaverseSpace(response.data);
-      });
-
-  }*/
 }
 
 export default CrossMintMegaverse;

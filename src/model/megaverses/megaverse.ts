@@ -1,13 +1,6 @@
-import CrossMintMegaverse from "./crossmint";
 import AstralObject from "../astralobjects/astralobject";
-import { Point } from "../point";
-import Space from "../astralobjects/space";
-import Polyanet from "../astralobjects/polyanet";
-import Cometh from "../astralobjects/cometh";
-import AstralObjectFactory from "../../service/astralobject";
-
 export interface MegaverseSpace {
-    goal: AstralObject[][];
+    goal: string[][];
 }
 
 abstract class Megaverse {

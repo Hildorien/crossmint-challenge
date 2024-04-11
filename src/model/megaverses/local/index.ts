@@ -24,7 +24,7 @@ class LocalMegaverse extends Megaverse {
         this.goalMap = {
             goal:
                 Array.from({ length: maxRow }, (_, row) =>
-                    Array.from({ length: maxColumns }, (_, column) => new Space({ x: row, y: column }))
+                    Array.from({ length: maxColumns }, (_, column) => new Space({ x: row, y: column }).toString())
                 )
         }
     }
@@ -53,7 +53,7 @@ class LocalMegaverse extends Megaverse {
                 reject(new Error("Invalid row or column"));
             }
 
-            this.goalMap.goal[row][column] = astralObject;
+            this.goalMap.goal[row][column] = astralObject.toString();
             resolve();
         });
     }
@@ -66,7 +66,7 @@ class LocalMegaverse extends Megaverse {
                 reject(new Error("Invalid row or column"));
             }
 
-            this.goalMap.goal[row][column] = new Space({ x: row, y: column });
+            this.goalMap.goal[row][column] = new Space({ x: row, y: column }).toString();
             resolve();
         });
     }

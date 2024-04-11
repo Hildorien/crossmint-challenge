@@ -25,7 +25,7 @@ describe('Phase 1 Megaverse', () => {
         astralObjectFactory = AstralObjectFactory.getInstance();
         cleanMap = {
             goal: Array.from({ length: 11 }, (_, row) =>
-                Array.from({ length: 11 }, (_, column) => new Space({ x: row, y: column }))
+                Array.from({ length: 11 }, (_, column) => new Space({ x: row, y: column }).toString())
             )
         };
     });
@@ -36,8 +36,8 @@ describe('Phase 1 Megaverse', () => {
             const map = Array.from({ length: 11 }, (_, i) =>
                 Array.from({ length: 11 },
                     (_, j) => (i >= 2 && i <= 8 && j >= 2 && j <= 8 && (i === j || i + j === 10)) ?
-                        new Polyanet({ x: i, y: j }) :
-                        new Space({ x: i, y: j })));
+                        new Polyanet({ x: i, y: j }).toString() :
+                        new Space({ x: i, y: j }).toString()));
             const mockGoalMap: MegaverseSpace = { goal: map };
 
             await shapeDrawer.drawPolyanetCross();

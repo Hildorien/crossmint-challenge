@@ -18,6 +18,9 @@ class Polyanet extends AstralObject {
     public getProperties(): { [key: string]: any; } {
         return {};
     }
+    public toString(): string {
+        return "POLYANET";
+    }
 }
 
 export default Polyanet;
